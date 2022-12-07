@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "django-nginx-postgres-wsgi-static"
+version = "0.1.0"
+description = "A sample django app with NGINX reverse proxy server, Postgres database, WSGI, and a static file server that can quickly be put into production."
+authors = ["Chase Yakaboski <chase.th@dartmouth.edu>"]
+readme = "README.md"
+packages = [{include = "django_nginx_postgres_wsgi_static"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^4.1.4"
+gunicorn = "^20.1.0"
+psycopg2-binary = "^2.9.5"
+django-environ = "^0.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
