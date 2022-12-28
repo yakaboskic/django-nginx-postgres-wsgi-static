@@ -7,6 +7,7 @@ services:
       - ./nginx/default.conf:/tmp/default.conf
     environment: 
       - DJANGO_SERVER_ADDR=mysite:8000
+      - STATIC_SERVER_ADDR=static-fs:8080
     ports:
       - "80:80"
     depends_on:
@@ -72,12 +73,13 @@ services:
   static-fs:
       image: halverneus/static-file-server:latest
       environment:
-          - FOLDER=/var/www/static
+          - FOLDER=/var/www
           - DEBUG=true
       expose:
         - 8080
       volumes:
           - ./static-files:/var/www/static
+          - ./media-files:/var/www/media
 
 volumes:
   db-data:
