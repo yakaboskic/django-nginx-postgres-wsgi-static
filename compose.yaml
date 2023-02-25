@@ -6,12 +6,12 @@ services:
     volumes:
       - ./nginx/default.conf:/tmp/default.conf
     environment: 
-      - DJANGO_SERVER_ADDR=mysite:8000
+      - DJANGO_SERVER_ADDR=beeline:8000
       - STATIC_SERVER_ADDR=static-fs:8080
     ports:
       - "80:80"
     depends_on:
-      - mysite
+      - beeline
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:80/health-check || exit 1"]
       interval: 10s
@@ -49,7 +49,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-    command: gunicorn -c gunicorn.config.py -b 0.0.0.0:8000 beeline.wsgi:application
+    command: gunicorn -c gunicorn.config.py --preload -b 0.0.0.0:8000 beeline.wsgi:application
   
   db:
     image: postgres
@@ -88,4 +88,4 @@ secrets:
   db-password:
     file: secrets/db/password.txt
   django-key:
-    file: secrets/mysite/secret_key.txt
+    file: secrets/beeline/secret_key.txt

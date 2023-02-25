@@ -5,4 +5,4 @@ class DatasetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dataset
-        fields = ['owner', 'file', 'uploaded_at']
+        fields = ['owner', 'file', 'upload_at']
