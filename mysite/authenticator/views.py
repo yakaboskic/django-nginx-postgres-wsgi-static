@@ -34,7 +34,7 @@ def password_auth(request):
         connection_id = data.get('connectionId')
         password_base64 = data.get('passwordBase64')
 
-        # TODO:V erify user and password 
+        # TODO:Verify user and password 
 
         return JsonResponse({'success': True})
     return JsonResponse({'success': False})

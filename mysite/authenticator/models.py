@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 ALGORITHM_CHOICES = [(1, 'JUMP3')]
 
@@ -10,3 +11,9 @@ class AlgorithmResult(models.Model):
     dataset = models.FilePathField()
     class Meta:
         ordering = ['created', 'algorithm', 'owner', 'dataset']
+
+class UserFile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    file = models.FileField(upload_to='user_uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
