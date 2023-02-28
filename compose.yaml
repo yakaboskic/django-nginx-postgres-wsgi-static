@@ -1,4 +1,14 @@
 services:
+  grnvbem:
+    image: grnbeeline/grnvbem:base
+    ports:
+    - "5000"
+    volumes: 
+      - ./static-files:/var/www/static
+      - ./media-files:/var/www/media
+    depends_on:
+      - beeline
+    command: tail -F anything
 
   nginx-proxy:
     build: nginx
